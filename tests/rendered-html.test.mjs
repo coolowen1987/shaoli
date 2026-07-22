@@ -1,0 +1,45 @@
+import assert from "node:assert/strict";
+import { access, readFile } from "node:fs/promises";
+import test from "node:test";
+
+const projectRoot = new URL("../", import.meta.url);
+
+async function renderedHtml(page = "") {
+  const relative = page ? `../out/${page}/index.html` : "../out/index.html";
+  return readFile(new URL(relative, import.meta.url), "utf8");
+}
+
+test("static export renders the Markdown-driven academic pages", async () => {
+  const [html, book] = await Promise.all([renderedHtml(), renderedHtml("book")]);
+
+  assert.match(html, /<title>About · Academic Portfolio<\/title>/i);
+  assert.match(html, /Academic portfolio/i);
+  assert.match(html, /href="\/book\/"/i);
+  assert.match(html, /href="\/papers\/"/i);
+  assert.match(html, /href="\/data\/"/i);
+  assert.match(html, /href="\/teaching\/"/i);
+  assert.match(html, /src="\/profile\.jpg"/i);
+  assert.match(html, /href="\/cv\.pdf"/i);
+  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
+  assert.match(book, /<title>Book · Academic Portfolio<\/title>/i);
+  assert.match(book, />Book</i);
+});
+
+test("keeps all page content in editable Markdown files", async () => {
+  const names = ["site", "about", "book", "papers", "data", "teaching", "cv", "contact"];
+  const files = await Promise.all(
+    names.map((name) => readFile(new URL(`../content/${name}.md`, import.meta.url), "utf8")),
+  );
+
+  assert.match(files[0], /name:\s*\n/);
+  assert.match(files[0], /dropbox_cv_url:\s*\n/);
+  assert.ok(files.slice(1).every((file) => /^---[\s\S]*title:/m.test(file)));
+  assert.ok(files.slice(1).every((file) => file.includes("<!--")));
+
+  await Promise.all([
+    access(new URL("../public/profile.jpg", import.meta.url)),
+    access(new URL("../public/cv.pdf", import.meta.url)),
+    access(new URL("../.github/workflows/pages.yml", import.meta.url)),
+  ]);
+  await assert.rejects(access(new URL("site.config.ts", projectRoot)));
+});
