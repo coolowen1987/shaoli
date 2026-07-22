@@ -87,54 +87,16 @@ summary:focus-visible {
 .desktop-nav a:hover::after { transform: scaleX(1); }
 .mobile-nav { display: none; }
 
-.home-hero {
+.about-hero {
   display: grid;
-  min-height: calc(100vh - 84px);
-  grid-template-columns: minmax(300px, 0.82fr) minmax(420px, 1.18fr);
-  border-bottom: 1px solid var(--line);
-}
-
-.portrait-wrap {
-  position: relative;
-  min-height: 700px;
-  overflow: hidden;
-  background: #c7c3c0;
-}
-
-.portrait {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center 18%;
-  filter: saturate(0.82) contrast(1.02);
-}
-
-.portrait-wrap::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 62%, rgba(12, 28, 47, 0.35));
-  content: "";
-  pointer-events: none;
-}
-
-.portrait-index {
-  position: absolute;
-  z-index: 1;
-  right: 2rem;
-  bottom: 1.6rem;
-  color: white;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
-.home-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(4rem, 8vw, 9rem);
+  width: min(1180px, 90vw);
+  min-height: calc(100vh - 181px);
+  align-items: center;
+  gap: clamp(3rem, 8vw, 8rem);
+  margin: 0 auto;
+  padding: clamp(5rem, 10vw, 9rem) 0;
   background: var(--paper);
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
 }
 
 .eyebrow,
@@ -147,39 +109,53 @@ summary:focus-visible {
   text-transform: uppercase;
 }
 
-.home-copy h1 {
-  min-height: 1.12em;
-  margin: 0 0 1.65rem;
+.about-copy h1 {
+  margin: 0 0 2.25rem;
   font-family: var(--serif);
-  font-size: clamp(3.6rem, 7vw, 7.4rem);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
   font-weight: 400;
   letter-spacing: -0.055em;
-  line-height: 0.94;
+  line-height: 0.96;
 }
 
-.identity-lines {
-  padding-left: 1.1rem;
-  border-left: 2px solid var(--accent);
+.about-introduction {
+  max-width: 680px;
 }
 
-.identity-lines p {
-  min-height: 1.6rem;
-  margin: 0.12rem 0;
+.about-introduction .markdown-body {
   color: var(--ink-soft);
+  font-size: clamp(1.08rem, 1.6vw, 1.22rem);
+  line-height: 1.8;
 }
 
-.home-summary {
-  max-width: 650px;
-  margin: 2rem 0 0;
-  font-family: var(--serif);
-  font-size: 1.1rem;
+.about-introduction .markdown-body p:last-child {
+  margin-bottom: 0;
 }
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 2.4rem;
+.about-portrait {
+  margin: 0;
+  padding: 0.7rem 0.7rem 0;
+  border: 1px solid var(--line);
+  background: var(--paper-light);
+  box-shadow: 0 24px 70px rgba(20, 34, 56, 0.1);
+}
+
+.about-portrait-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: saturate(0.84) contrast(1.02);
+}
+
+.about-portrait figcaption {
+  padding: 0.85rem 0.2rem 0.8rem;
+  color: var(--ink-soft);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .button {
@@ -383,20 +359,25 @@ footer a { justify-self: end; }
   .mobile-nav summary::-webkit-details-marker { display: none; }
   .mobile-nav nav { position: absolute; top: 2.3rem; right: 0; display: grid; width: 210px; padding: 1rem; border: 1px solid var(--line); background: var(--paper-light); box-shadow: 0 18px 50px rgba(20, 34, 56, 0.12); }
   .mobile-nav nav a { padding: 0.65rem; }
-  .home-hero { grid-template-columns: 0.8fr 1.2fr; }
-  .portrait-wrap { min-height: 640px; }
-  .home-copy { padding: 4rem; }
+  .about-hero {
+    gap: 3.5rem;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 310px);
+  }
 }
 
 @media (max-width: 720px) {
   .site-header { min-height: 72px; }
   html { scroll-padding-top: 6rem; }
   .wordmark { min-width: 130px; }
-  .home-hero { min-height: auto; grid-template-columns: 1fr; }
-  .portrait-wrap { min-height: 0; aspect-ratio: 4 / 5; }
-  .portrait { object-position: center 15%; }
-  .home-copy { padding: 4rem 7vw 5rem; }
-  .home-copy h1 { font-size: clamp(3.1rem, 16vw, 5rem); }
+  .about-hero {
+    width: min(88vw, 620px);
+    min-height: auto;
+    gap: 3rem;
+    padding: 4.5rem 0 5rem;
+    grid-template-columns: 1fr;
+  }
+  .about-copy h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
+  .about-portrait { width: min(100%, 340px); justify-self: center; }
   .page-title-row,
   .page-kicker { grid-template-columns: 2.7rem 1fr; }
   .page-hero > p:last-of-type,
