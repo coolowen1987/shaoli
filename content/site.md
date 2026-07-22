@@ -5,7 +5,7 @@ affiliation:
 location:
 email:
 office:
-dropbox_cv_url:
+dropbox_cv_url: "https://www.dropbox.com/scl/fi/pvqfbwzjbwevhbb4af5sm/cv.pdf?rlkey=i11lf1wbue17pe8n7kcu53msj&dl=0"
 google_scholar_url:
 orcid_url:
 github_url:

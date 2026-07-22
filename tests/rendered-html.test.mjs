@@ -3,6 +3,8 @@ import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const projectRoot = new URL("../", import.meta.url);
+const dropboxCvUrl =
+  "https://www.dropbox.com/scl/fi/pvqfbwzjbwevhbb4af5sm/cv.pdf?rlkey=i11lf1wbue17pe8n7kcu53msj&dl=0";
 
 async function renderedHtml(page = "") {
   const relative = page ? `../out/${page}/index.html` : "../out/index.html";
@@ -19,7 +21,7 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(html, /href="\/data\/"/i);
   assert.match(html, /href="\/teaching\/"/i);
   assert.match(html, /src="\/profile\.jpg"/i);
-  assert.match(html, /href="\/cv\.pdf"/i);
+  assert.ok(html.includes(`href="${dropboxCvUrl.replace("&", "&amp;")}"`));
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
   assert.match(book, /<title>Book · Academic Portfolio<\/title>/i);
   assert.match(book, />Book</i);
@@ -32,7 +34,7 @@ test("keeps all page content in editable Markdown files", async () => {
   );
 
   assert.match(files[0], /name:\s*\n/);
-  assert.match(files[0], /dropbox_cv_url:\s*\n/);
+  assert.ok(files[0].includes(`dropbox_cv_url: "${dropboxCvUrl}"`));
   assert.ok(files.slice(1).every((file) => /^---[\s\S]*title:/m.test(file)));
   assert.ok(files.slice(1).every((file) => file.includes("<!--")));
 
