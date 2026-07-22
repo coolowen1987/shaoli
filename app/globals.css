@@ -149,15 +149,6 @@ summary:focus-visible {
   filter: saturate(0.84) contrast(1.02);
 }
 
-.about-portrait figcaption {
-  padding: 0.85rem 0.2rem 0.8rem;
-  color: var(--ink-soft);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
 .button {
   display: inline-flex;
   min-height: 48px;

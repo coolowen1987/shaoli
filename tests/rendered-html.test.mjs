@@ -23,6 +23,7 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(html, /href="\/data\/"/i);
   assert.match(html, /href="\/teaching\/"/i);
   assert.match(html, /src="\/profile\.jpg"/i);
+  assert.doesNotMatch(html, /<figcaption[^>]*>Profile<\/figcaption>/i);
   assert.doesNotMatch(html, /Read profile|Curriculum vitae|dropbox\.com/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
   assert.match(book, /<title>Book · Academic Portfolio<\/title>/i);

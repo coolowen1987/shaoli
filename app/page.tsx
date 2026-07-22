@@ -23,7 +23,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <figure className="about-portrait">
+        <div className="about-portrait">
           <img
             className="about-portrait-image"
             src={`${basePath}/profile.jpg`}
@@ -31,8 +31,7 @@ export default async function Home() {
             width="614"
             height="899"
           />
-          <figcaption>Profile</figcaption>
-        </figure>
+        </div>
       </section>
     </div>
   );
