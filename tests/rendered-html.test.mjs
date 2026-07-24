@@ -70,6 +70,8 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(css, /\.content-page-research \.markdown-body a:hover,[^}]*border-bottom-color:\s*currentColor;/s);
   assert.match(css, /\.content-page-teaching \.markdown-body h3 a\s*{[^}]*border-bottom-color:\s*transparent;/s);
   assert.match(css, /\.content-page-teaching \.markdown-body h3 a:hover,[^}]*border-bottom-color:\s*currentColor;/s);
+  assert.match(css, /\.content-page-teaching \.markdown-body > h1\s*{[^}]*margin:\s*clamp\(4rem,\s*6vw,\s*5rem\)\s*0\s*2rem;/s);
+  assert.match(css, /\.content-page-teaching \.markdown-body > h2\s*{[^}]*border-top:\s*0;/s);
   assert.match(css, /footer\s*{[^}]*padding:\s*1\.5rem 7vw;/s);
 
   await Promise.all([

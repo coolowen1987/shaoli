@@ -261,6 +261,17 @@ summary:focus-visible {
   border-bottom-color: transparent;
   transition: border-color 160ms ease;
 }
+.content-page-teaching .markdown-body > h1 {
+  margin: clamp(4rem, 6vw, 5rem) 0 2rem;
+}
+.content-page-teaching .markdown-body > h1:first-child {
+  margin-top: 0;
+}
+.content-page-teaching .markdown-body > h2 {
+  margin: 2.75rem 0 1.2rem;
+  padding-top: 0;
+  border-top: 0;
+}
 .content-page-research .markdown-body a:hover,
 .content-page-research .markdown-body a:focus-visible,
 .content-page-teaching .markdown-body h3 a:hover,
