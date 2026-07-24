@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
+import { marked } from "marked";
 
 const projectRoot = new URL("../", import.meta.url);
 const dropboxCvUrl =
@@ -11,18 +12,24 @@ async function renderedHtml(page = "") {
   return readFile(new URL(relative, import.meta.url), "utf8");
 }
 
+function markdownBody(source) {
+  const normalized = source.replace(/^\uFEFF/, "");
+  const closing = normalized.indexOf("\n---\n", 4);
+  return closing === -1 ? normalized : normalized.slice(closing + 5);
+}
+
 test("static export renders the Markdown-driven academic pages", async () => {
-  const [html, research] = await Promise.all([renderedHtml(), renderedHtml("research")]);
+  const [html, research, aboutSource] = await Promise.all([
+    renderedHtml(),
+    renderedHtml("research"),
+    readFile(new URL("../content/about.md", import.meta.url), "utf8"),
+  ]);
+  const expectedAboutHtml = await marked.parse(markdownBody(aboutSource), { gfm: true });
 
   assert.match(html, /<title>Welcome! · Academic Portfolio<\/title>/i);
   assert.match(html, /<h1[^>]*>Welcome!<\/h1>/i);
   assert.match(html, /Li Shao, a Political Scientest/i);
-  assert.match(html, /Li Shao/i);
-  assert.match(html, /My research focuses on/i);
-  assert.match(
-    html,
-    /<a href="https:\/\/journals\.sagepub\.com\/home\/acp">Asian Journal of Comparative Politics<\/a>/i,
-  );
+  assert.ok(html.includes(expectedAboutHtml));
   assert.match(html, /href="\/research\/"/i);
   assert.match(html, /href="\/teaching\/"/i);
   assert.doesNotMatch(html, /href="\/(?:book|papers|data)\/"/i);
