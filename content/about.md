@@ -4,9 +4,9 @@ eyebrow: About
 summary:
 ---
 
-I am a researcher working at the intersection of **[field one]** and **[field two]**. My work examines **[central research question]** using **[methods, cases, or sources]**.
+I am **Li Shao, (邵立)**, a political scientist. I am an assistant professor at the Department of Political Science, School of Publif Affiars, Zhejiang University. I obtained my PhD from Maxwell School, Syracuse University at 2019. I am also an associate editor of the [Asian Journal of Comparative Politics](https://journals.sagepub.com/home/acp).
 
-I am currently **[position]** at **[institution]**. Before joining **[institution]**, I completed my **[degree]** at **[university]**, and my current projects focus on **[brief description of research agenda]**.
+My research focuses on political communication, information governance .
 
 <!--
 Replace the two short paragraphs above with your own biography.

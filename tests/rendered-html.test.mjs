@@ -16,8 +16,12 @@ test("static export renders the Markdown-driven academic pages", async () => {
 
   assert.match(html, /<title>Welcome! · Academic Portfolio<\/title>/i);
   assert.match(html, /<h1[^>]*>Welcome!<\/h1>/i);
-  assert.match(html, /I am a researcher working at the intersection of/i);
-  assert.match(html, /I am currently/i);
+  assert.match(html, /Li Shao/i);
+  assert.match(html, /My research focuses on/i);
+  assert.match(
+    html,
+    /<a href="https:\/\/journals\.sagepub\.com\/home\/acp">Asian Journal of Comparative Politics<\/a>/i,
+  );
   assert.match(html, /href="\/book\/"/i);
   assert.match(html, /href="\/papers\/"/i);
   assert.match(html, /href="\/data\/"/i);
