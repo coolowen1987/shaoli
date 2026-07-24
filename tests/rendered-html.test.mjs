@@ -39,8 +39,10 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
   assert.match(research, /<title>Research · Academic Portfolio<\/title>/i);
   assert.match(research, />Research</i);
-  assert.match(research, /class="content-page"/i);
+  assert.match(research, /class="content-page content-page-research"/i);
   assert.doesNotMatch(research, /class="(?:page-hero|markdown-section)/i);
+  assert.match(research, /\[<a href="https:\/\/[^"]+">link<\/a>\]/i);
+  assert.doesNotMatch(research, /<a href="https:\/\/[^"]+">(?:Li|Liu|Shao|Fu|Han|Jin),/i);
 });
 
 test("keeps all page content in editable Markdown files", async () => {
@@ -63,6 +65,8 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(css, /\.content-page\s*{[^}]*padding:[^;]*7vw[^}]*background:\s*var\(--paper\);/s);
   assert.match(css, /\.markdown-body ul\s*{[^}]*list-style:\s*none;/s);
   assert.match(css, /\.markdown-body ul > li::before\s*{[^}]*content:\s*"▶";/s);
+  assert.match(css, /\.content-page-research \.markdown-body a\s*{[^}]*border-bottom-color:\s*transparent;/s);
+  assert.match(css, /\.content-page-research \.markdown-body a:hover,[^}]*border-bottom-color:\s*currentColor;/s);
   assert.match(css, /footer\s*{[^}]*padding:\s*1\.5rem 7vw;/s);
 
   await Promise.all([

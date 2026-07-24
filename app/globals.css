@@ -253,6 +253,14 @@ summary:focus-visible {
   font-size: 0.68em;
   line-height: 1;
 }
+.content-page-research .markdown-body a {
+  border-bottom-color: transparent;
+  transition: border-color 160ms ease;
+}
+.content-page-research .markdown-body a:hover,
+.content-page-research .markdown-body a:focus-visible {
+  border-bottom-color: currentColor;
+}
 .markdown-body a { color: var(--accent); border-bottom: 1px solid currentColor; }
 .markdown-body blockquote { margin: 2.5rem 0; padding: 0.4rem 0 0.4rem 1.5rem; border-left: 2px solid var(--accent); color: var(--ink-soft); font-style: italic; }
 .markdown-body hr { margin: 4rem 0; border: 0; border-top: 1px solid var(--line); }

@@ -43,7 +43,7 @@ export default async function ContentPage({ params }: PageProps) {
 
   return (
     <div id="top" className="inner-page">
-      <section className="content-page" aria-labelledby="content-page-title">
+      <section className={`content-page content-page-${slug}`} aria-labelledby="content-page-title">
         <div className="content-page-copy">
           {page.eyebrow ? <p className="eyebrow">{page.eyebrow}</p> : null}
           <h1 id="content-page-title">{page.title}</h1>
