@@ -1,6 +1,6 @@
 # Personal academic website
 
-A professional, responsive academic website designed for GitHub Pages. Its page structure follows the reference pattern at `xiao-ma.me`: About, Book, Papers, Data, Teaching, CV, and Contact.
+A professional, responsive academic website designed for GitHub Pages. Its page structure is: About, Research, Teaching, CV, and Contact.
 
 ## Edit content with Markdown
 
@@ -10,9 +10,7 @@ You do not need to edit the webpage code for ordinary updates. All editable cont
 | --- | --- |
 | `content/site.md` | Name, title, affiliation, location, email, office, CV link, and profile links |
 | `content/about.md` | Front-page biography and research overview |
-| `content/book.md` | Book or major project page |
-| `content/papers.md` | Publications and working papers |
-| `content/data.md` | Datasets and research resources |
+| `content/research.md` | Publications, projects, and research resources |
 | `content/teaching.md` | Teaching interests and courses |
 | `content/cv.md` | Optional CV-page introduction |
 | `content/contact.md` | Additional contact text |

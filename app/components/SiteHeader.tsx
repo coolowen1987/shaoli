@@ -3,9 +3,7 @@ import type { SiteDetails } from "../../lib/content";
 
 const navigation = [
   ["About", "/"],
-  ["Book", "/book/"],
-  ["Papers", "/papers/"],
-  ["Data", "/data/"],
+  ["Research", "/research/"],
   ["Teaching", "/teaching/"],
   ["CV", "/cv/"],
   ["Contact", "/contact/"],

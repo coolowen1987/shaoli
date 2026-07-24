@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { marked } from "marked";
 
-export const pageSlugs = ["book", "papers", "data", "teaching", "cv", "contact"] as const;
+export const pageSlugs = ["research", "teaching", "cv", "contact"] as const;
 export type PageSlug = (typeof pageSlugs)[number] | "about";
 
 export type SiteDetails = {

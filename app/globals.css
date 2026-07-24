@@ -91,10 +91,10 @@ summary:focus-visible {
   display: grid;
   width: min(1180px, 90vw);
   min-height: calc(100vh - 181px);
-  align-items: center;
+  align-items: start;
   gap: clamp(3rem, 8vw, 8rem);
   margin: 0 auto;
-  padding: clamp(5rem, 10vw, 9rem) 0;
+  padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(5rem, 8vw, 7rem);
   background: var(--paper);
   grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
 }
