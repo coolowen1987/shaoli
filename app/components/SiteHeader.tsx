@@ -17,7 +17,7 @@ export function SiteHeader({ site }: { site: SiteDetails }) {
   return (
     <header className="site-header">
       <Link className="wordmark" href="/" aria-label="Home">
-        <Wordmark name={site.name} />
+        <Wordmark name={site.wordmark || site.name} />
       </Link>
 
       <nav className="desktop-nav" aria-label="Primary navigation">

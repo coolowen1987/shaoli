@@ -7,6 +7,7 @@ export type PageSlug = (typeof pageSlugs)[number] | "about";
 
 export type SiteDetails = {
   name: string;
+  wordmark: string;
   title: string;
   affiliation: string;
   location: string;
@@ -65,6 +66,7 @@ export async function getSiteDetails(): Promise<SiteDetails> {
 
   return {
     name: text(data.name),
+    wordmark: text(data.wordmark),
     title: text(data.title),
     affiliation: text(data.affiliation),
     location: text(data.location),

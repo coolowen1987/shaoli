@@ -1,5 +1,6 @@
 ---
 name:
+wordmark: "Li Shao, a Political Scientest"
 title:
 affiliation:
 location:
@@ -16,6 +17,7 @@ This file controls information shared across the whole website.
 Keep the values after each colon, for example:
 
 name: Your Name
+wordmark: Your Name, a Political Scientist
 title: Associate Professor of ...
 affiliation: University Name
 dropbox_cv_url: https://www.dropbox.com/...

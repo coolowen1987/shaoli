@@ -8,7 +8,7 @@ You do not need to edit the webpage code for ordinary updates. All editable cont
 
 | File | Controls |
 | --- | --- |
-| `content/site.md` | Name, title, affiliation, location, email, office, CV link, and profile links |
+| `content/site.md` | Header wordmark, name, title, affiliation, location, email, office, CV link, and profile links |
 | `content/about.md` | Front-page biography and research overview |
 | `content/research.md` | Publications, projects, and research resources |
 | `content/teaching.md` | Teaching interests and courses |

@@ -16,6 +16,7 @@ test("static export renders the Markdown-driven academic pages", async () => {
 
   assert.match(html, /<title>Welcome! · Academic Portfolio<\/title>/i);
   assert.match(html, /<h1[^>]*>Welcome!<\/h1>/i);
+  assert.match(html, /Li Shao, a Political Scientest/i);
   assert.match(html, /Li Shao/i);
   assert.match(html, /My research focuses on/i);
   assert.match(
@@ -43,10 +44,14 @@ test("keeps all page content in editable Markdown files", async () => {
   ]);
 
   assert.match(files[0], /name:\s*\n/);
+  assert.match(files[0], /wordmark:\s*"Li Shao, a Political Scientest"/);
   assert.ok(files[0].includes(`dropbox_cv_url: "${dropboxCvUrl}"`));
   assert.ok(files.slice(1).every((file) => /^---[\s\S]*title:/m.test(file)));
   assert.ok(files.slice(1).every((file) => file.includes("<!--")));
   assert.match(css, /\.about-hero\s*{[^}]*align-items:\s*start;/s);
+  assert.match(css, /\.site-header\s*{[^}]*padding:\s*0 7vw;/s);
+  assert.match(css, /\.about-hero\s*{[^}]*width:\s*100%;[^}]*padding:[^;]*7vw/s);
+  assert.match(css, /footer\s*{[^}]*padding:\s*1\.5rem 7vw;/s);
 
   await Promise.all([
     access(new URL("../public/profile.jpg", import.meta.url)),

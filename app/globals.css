@@ -43,7 +43,7 @@ summary:focus-visible {
   min-height: 84px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5vw;
+  padding: 0 7vw;
   border-bottom: 1px solid rgba(20, 34, 56, 0.14);
   background: rgba(251, 250, 247, 0.94);
   backdrop-filter: blur(12px);
@@ -52,9 +52,10 @@ summary:focus-visible {
 .wordmark {
   min-width: 180px;
   font-family: var(--serif);
-  font-size: 1.35rem;
+  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
   font-weight: 700;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .desktop-nav {
@@ -89,12 +90,13 @@ summary:focus-visible {
 
 .about-hero {
   display: grid;
-  width: min(1180px, 90vw);
+  width: 100%;
   min-height: calc(100vh - 181px);
   align-items: start;
   gap: clamp(3rem, 8vw, 8rem);
-  margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(5rem, 8vw, 7rem);
+  margin: 0;
+  padding: clamp(3rem, 6vw, 5.5rem) 7vw clamp(5rem, 8vw, 7rem);
+  border-bottom: 1px solid var(--line);
   background: var(--paper);
   grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
 }
@@ -306,7 +308,7 @@ footer {
   min-height: 96px;
   align-items: center;
   gap: 1rem;
-  padding: 1.5rem 5vw;
+  padding: 1.5rem 7vw;
   border-top: 1px solid var(--line);
   background: var(--paper-light);
   color: var(--ink-soft);
@@ -361,10 +363,10 @@ footer a { justify-self: end; }
   html { scroll-padding-top: 6rem; }
   .wordmark { min-width: 130px; }
   .about-hero {
-    width: min(88vw, 620px);
+    width: 100%;
     min-height: auto;
     gap: 3rem;
-    padding: 4.5rem 0 5rem;
+    padding: 4.5rem 7vw 5rem;
     grid-template-columns: 1fr;
   }
   .about-copy h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
