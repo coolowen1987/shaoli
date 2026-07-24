@@ -171,68 +171,42 @@ summary:focus-visible {
 
 .inner-page { min-height: calc(100vh - 180px); }
 
-.page-hero {
-  padding: clamp(5rem, 10vw, 10rem) 7vw clamp(4rem, 8vw, 7rem);
+.content-page {
+  min-height: calc(100vh - 181px);
+  padding: clamp(3rem, 6vw, 5.5rem) 7vw clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid var(--line);
   background: var(--paper);
 }
 
-.page-title-row {
-  display: grid;
-  align-items: baseline;
-  grid-template-columns: 5rem 1fr;
+.content-page-copy {
+  width: min(100%, 900px);
 }
 
-.page-title-row > span,
-.page-kicker > span {
-  color: var(--accent);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-.page-title-row h1 {
+.content-page h1 {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(4rem, 10vw, 9rem);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
   font-weight: 400;
-  letter-spacing: -0.06em;
-  line-height: 0.94;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
 }
 
-.page-hero > p:last-of-type {
+.content-page-summary {
   max-width: 680px;
-  margin: 2.4rem 0 0 5rem;
+  margin: 2.25rem 0 0;
   color: var(--ink-soft);
-  font-family: var(--serif);
-  font-size: 1.15rem;
+  font-size: clamp(1.08rem, 1.6vw, 1.22rem);
+  line-height: 1.8;
 }
 
-.markdown-section {
-  padding: clamp(5rem, 9vw, 9rem) 7vw;
-  background: white;
+.content-page-body {
+  margin-top: 2.25rem;
 }
 
-.inner-content {
-  display: grid;
-  grid-template-columns: minmax(0, 850px);
-  justify-content: center;
-}
-
-.page-kicker {
-  display: grid;
-  align-items: baseline;
-  margin-bottom: clamp(3rem, 6vw, 6rem);
-  grid-template-columns: 5rem 1fr;
-}
-
-.page-kicker h2 {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
-  font-weight: 400;
-  letter-spacing: -0.045em;
-  line-height: 1;
+.content-page-body .markdown-body {
+  color: var(--ink-soft);
+  font-size: clamp(1.08rem, 1.6vw, 1.22rem);
+  line-height: 1.8;
 }
 
 .markdown-body {
@@ -333,7 +307,6 @@ footer a { justify-self: end; }
 .blank-line.long { width: min(100%, 26rem); }
 .blank-line.medium { width: min(100%, 20rem); }
 .blank-line.short { width: min(100%, 11rem); }
-.blank-summary { width: min(100%, 32rem); height: 1.3rem; margin: 2.4rem 0 0 5rem; }
 .blank-contact { width: min(100%, 12rem); height: 1.5rem; }
 .blank-footer { width: 7rem; height: 0.8rem; }
 
@@ -371,10 +344,8 @@ footer a { justify-self: end; }
   }
   .about-copy h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
   .about-portrait { width: min(100%, 340px); justify-self: center; }
-  .page-title-row,
-  .page-kicker { grid-template-columns: 2.7rem 1fr; }
-  .page-hero > p:last-of-type,
-  .blank-summary { margin-left: 2.7rem; }
+  .content-page { min-height: auto; padding: 4.5rem 7vw 5rem; }
+  .content-page h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
   .contact-details { grid-template-columns: 1fr; }
   .contact-details > div { min-height: 130px; }
   footer { align-items: start; grid-template-columns: 1fr; }

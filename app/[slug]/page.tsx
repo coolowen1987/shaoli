@@ -35,7 +35,6 @@ export default async function ContentPage({ params }: PageProps) {
 
   const [page, site] = await Promise.all([getMarkdownPage(slug), getSiteDetails()]);
   const cvHref = site.dropboxCvUrl || `${basePath}/cv.pdf`;
-  const index = String(pageSlugs.indexOf(slug) + 2).padStart(2, "0");
   const links = [
     ["Google Scholar", site.googleScholarUrl],
     ["ORCID", site.orcidUrl],
@@ -44,42 +43,41 @@ export default async function ContentPage({ params }: PageProps) {
 
   return (
     <div id="top" className="inner-page">
-      <header className="page-hero">
-        <p className="eyebrow">{page.eyebrow}</p>
-        <div className="page-title-row">
-          <span>{index}</span>
-          <h1>{page.title}</h1>
-        </div>
-        {page.summary ? <p>{page.summary}</p> : <span className="blank blank-summary" aria-hidden="true" />}
-      </header>
+      <section className="content-page" aria-labelledby="content-page-title">
+        <div className="content-page-copy">
+          {page.eyebrow ? <p className="eyebrow">{page.eyebrow}</p> : null}
+          <h1 id="content-page-title">{page.title}</h1>
+          {page.summary ? <p className="content-page-summary">{page.summary}</p> : null}
 
-      <section className="markdown-section inner-content">
-        <MarkdownContent page={page} />
-
-        {slug === "cv" ? (
-          <a className="button button-primary page-action" href={cvHref} target="_blank" rel="noreferrer">
-            Open CV <span aria-hidden="true">↗</span>
-          </a>
-        ) : null}
-
-        {slug === "contact" ? (
-          <div className="contact-details">
-            <div>
-              <p className="mini-label">Email</p>
-              {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span className="blank blank-contact" />}
-            </div>
-            <div>
-              <p className="mini-label">Office</p>
-              {site.office || <span className="blank blank-contact" />}
-            </div>
-            <div>
-              <p className="mini-label">Elsewhere</p>
-              {links.length ? links.map(([label, url]) => (
-                <a href={url} target="_blank" rel="noreferrer" key={label}>{label}</a>
-              )) : <span className="blank blank-contact" />}
-            </div>
+          <div className="content-page-body">
+            <MarkdownContent page={page} />
           </div>
-        ) : null}
+
+          {slug === "cv" ? (
+            <a className="button button-primary page-action" href={cvHref} target="_blank" rel="noreferrer">
+              Open CV <span aria-hidden="true">↗</span>
+            </a>
+          ) : null}
+
+          {slug === "contact" ? (
+            <div className="contact-details">
+              <div>
+                <p className="mini-label">Email</p>
+                {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span className="blank blank-contact" />}
+              </div>
+              <div>
+                <p className="mini-label">Office</p>
+                {site.office || <span className="blank blank-contact" />}
+              </div>
+              <div>
+                <p className="mini-label">Elsewhere</p>
+                {links.length ? links.map(([label, url]) => (
+                  <a href={url} target="_blank" rel="noreferrer" key={label}>{label}</a>
+                )) : <span className="blank blank-contact" />}
+              </div>
+            </div>
+          ) : null}
+        </div>
       </section>
     </div>
   );

@@ -39,6 +39,8 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
   assert.match(research, /<title>Research · Academic Portfolio<\/title>/i);
   assert.match(research, />Research</i);
+  assert.match(research, /class="content-page"/i);
+  assert.doesNotMatch(research, /class="(?:page-hero|markdown-section)/i);
 });
 
 test("keeps all page content in editable Markdown files", async () => {
@@ -58,6 +60,7 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(css, /\.about-hero\s*{[^}]*align-items:\s*start;/s);
   assert.match(css, /\.site-header\s*{[^}]*padding:\s*0 7vw;/s);
   assert.match(css, /\.about-hero\s*{[^}]*width:\s*100%;[^}]*padding:[^;]*7vw/s);
+  assert.match(css, /\.content-page\s*{[^}]*padding:[^;]*7vw[^}]*background:\s*var\(--paper\);/s);
   assert.match(css, /footer\s*{[^}]*padding:\s*1\.5rem 7vw;/s);
 
   await Promise.all([
