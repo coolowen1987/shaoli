@@ -257,8 +257,14 @@ summary:focus-visible {
   border-bottom-color: transparent;
   transition: border-color 160ms ease;
 }
+.content-page-teaching .markdown-body h3 a {
+  border-bottom-color: transparent;
+  transition: border-color 160ms ease;
+}
 .content-page-research .markdown-body a:hover,
-.content-page-research .markdown-body a:focus-visible {
+.content-page-research .markdown-body a:focus-visible,
+.content-page-teaching .markdown-body h3 a:hover,
+.content-page-teaching .markdown-body h3 a:focus-visible {
   border-bottom-color: currentColor;
 }
 .markdown-body a { color: var(--accent); border-bottom: 1px solid currentColor; }
