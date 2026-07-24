@@ -61,7 +61,8 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(css, /\.site-header\s*{[^}]*padding:\s*0 7vw;/s);
   assert.match(css, /\.about-hero\s*{[^}]*width:\s*100%;[^}]*padding:[^;]*7vw/s);
   assert.match(css, /\.content-page\s*{[^}]*padding:[^;]*7vw[^}]*background:\s*var\(--paper\);/s);
-  assert.match(css, /\.markdown-body ul\s*{[^}]*list-style-type:\s*disc;/s);
+  assert.match(css, /\.markdown-body ul\s*{[^}]*list-style:\s*none;/s);
+  assert.match(css, /\.markdown-body ul > li::before\s*{[^}]*content:\s*"▶";/s);
   assert.match(css, /footer\s*{[^}]*padding:\s*1\.5rem 7vw;/s);
 
   await Promise.all([
