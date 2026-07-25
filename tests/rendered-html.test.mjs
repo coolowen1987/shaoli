@@ -4,8 +4,6 @@ import test from "node:test";
 import { marked } from "marked";
 
 const projectRoot = new URL("../", import.meta.url);
-const dropboxCvUrl =
-  "https://www.dropbox.com/scl/fi/pvqfbwzjbwevhbb4af5sm/cv.pdf?rlkey=i11lf1wbue17pe8n7kcu53msj&dl=0";
 
 async function renderedHtml(page = "") {
   const relative = page ? `../out/${page}/index.html` : "../out/index.html";
@@ -57,7 +55,7 @@ test("keeps all page content in editable Markdown files", async () => {
 
   assert.match(files[0], /name:\s*\n/);
   assert.match(files[0], /wordmark:\s*"Li Shao, a Political Scientest"/);
-  assert.ok(files[0].includes(`dropbox_cv_url: "${dropboxCvUrl}"`));
+  assert.match(files[0], /dropbox_cv_url:\s*"https:\/\/www\.dropbox\.com\/[^"]+"/);
   assert.ok(files.slice(1).every((file) => /^---[\s\S]*title:/m.test(file)));
   assert.ok(files.slice(1).every((file) => file.includes("<!--")));
   assert.match(css, /\.about-hero\s*{[^}]*align-items:\s*start;/s);

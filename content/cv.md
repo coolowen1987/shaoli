@@ -1,10 +1,10 @@
 ---
-title: CV
+title: Curriculum Vitae
 eyebrow:
 summary:
 ---
 
-Here is my [latest CV](https://www.dropbox.com/scl/fi/hu94hv3oo3qs67k3m5d67/cv.pdf?rlkey=jc3i0nxbwjdddhaof20qemuxk&dl=0)
+# Please click the button below for my latest CV.
 
 <!--
 Optional: add a short note about your CV here.
