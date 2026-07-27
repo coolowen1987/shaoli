@@ -17,11 +17,20 @@ summary:
 
 - Han, Rongbin, and Li Shao. 2022. “Scaling Authoritarian Information Control: How China Adjusts the Level of Online Censorship.” Political Research Quarterly 75(4): 1345–59. doi:10.1177/10659129211064536. \[[Link](https://journals.sagepub.com/doi/abs/10.1177/10659129211064536)\]
 
+- Shao, Li, and Dongshu Liu. 2019. “The Road to Cynicism: The Political Consequences of Online Satire Exposure in China.” Political Studies 67(2): 517–36. doi:10.1177/0032321718791373. \[[Link](https://journals.sagepub.com/doi/abs/10.1177/0032321718791373)\]
+
+- Shao, Li. 2018. “The Dilemma of Criticism: Disentangling The Determinants of Media Censorship in China.” Journal of East Asian Studies 18(3): 279–97. doi:10.1017/jea.2018.19. \[[Link](https://www.cambridge.org/core/journals/journal-of-east-asian-studies/article/dilemma-of-criticism-disentangling-thedeterminants-of-media-censorship-inchina/033F58546D286E1302BE2AAAD6CFC090)\]
+
+
+
+
 # Policy Communication
 
 - Shao, Li, and Meng U. Ieong. 2024. “Expert Opinion and Public Support of Genetically Modified Food Policy: Does Deficit Model Work in China?” Review of Policy Research 41(5): 837–53. doi:10.1111/ropr.12603. \[[Link](https://onlinelibrary.wiley.com/doi/abs/10.1111/ropr.12603)\]
 - Han, Rongbin, Juan Du, and Li Shao. 2023. “Opportunistic Bargaining: Negotiating Distribution in China.” The China Quarterly 253: 141–57. doi:10.1017/S0305741022001370. \[[Link](https://www.cambridge.org/core/journals/china-quarterly/article/opportunistic-bargaining-negotiating-distribution-in-china/F91ACE79F2A838D7C979B7612FEC89F3)\]
 - Shao, Li, and Meng U. Ieong. 2022. “Public Attitudes towards Experts in China.” Journal of Asian Public Policy 17(3): 565–88. \[[Link](https://www.tandfonline.com/doi/abs/10.1080/17516234.2022.2123699)\]
+
+- Huang, He, Fangfei Wang, and Li Shao. 2018. “How Propaganda Moderates the Influence of Opinion Leaders on Social Media in China.” International Journal of Communication 12: 2599–2621. \[[Link](https://ijoc.org/index.php/ijoc/article/view/8129)\]
 
 # Policy Communication in Migration Policies
 
