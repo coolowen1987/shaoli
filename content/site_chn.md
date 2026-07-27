@@ -1,6 +1,6 @@
 ---
 name: "邵立"
-wordmark: "邵立，政治学者"
+wordmark: "政治学家邵立的个人网站"
 title:
 affiliation:
 location:
