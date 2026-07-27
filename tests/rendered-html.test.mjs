@@ -11,6 +11,8 @@ const syllabusFiles = [
   "zju_cpi_syllabus_e_translate.pdf",
   "zju_psr_syllabus2026.pdf",
   "syr_Syllabus_Intro_Political_Analysis.pdf",
+  "zju_cp_simulation_chn.pdf",
+  "zju_cp_simulation_eng.pdf",
 ];
 
 async function renderedHtml(page = "") {
@@ -63,6 +65,13 @@ test("teaching Markdown links every syllabus from the public site", async () => 
     assert.ok(teachingHtml.includes(`href="../linkresource/${file}"`));
     await access(new URL(`../public/linkresource/${file}`, import.meta.url));
   }
+  assert.match(teachingHtml, /<li>Introduction to Comparative Politics[\s\S]*<ul>[\s\S]*Chinese Syllabus/i);
+  assert.match(teachingHtml, /Parliament Simulation\(Chinese\)/i);
+  assert.match(teachingHtml, /Parliament Simulation\(Translated in English\)/i);
+  assert.match(
+    teachingHtml,
+    /<em>Sample syllabus, class evaluation and student comments are available upon request\.<\/em>/i,
+  );
 });
 
 test("keeps all page content in editable Markdown files", async () => {
