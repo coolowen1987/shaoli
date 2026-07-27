@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getSiteDetails } from "../lib/content";
+import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import "./globals.css";
 
@@ -16,23 +17,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const site = await getSiteDetails();
+  const [site, chineseSite] = await Promise.all([getSiteDetails(), getSiteDetails("chn")]);
 
   return (
     <html lang="en">
       <body>
-        <SiteHeader site={site} />
+        <SiteHeader site={site} chineseSite={chineseSite} />
         <main>{children}</main>
-        <footer>
-          <span>{site.name || <span className="blank blank-footer" aria-hidden="true" />}</span>
-          <span>Academic portfolio · GitHub Pages</span>
-          <LinkBackToTop />
-        </footer>
+        <SiteFooter site={site} chineseSite={chineseSite} />
       </body>
     </html>
   );
-}
-
-function LinkBackToTop() {
-  return <a href="#top">Back to top ↑</a>;
 }

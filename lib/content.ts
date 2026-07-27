@@ -4,6 +4,7 @@ import { marked } from "marked";
 
 export const pageSlugs = ["research", "teaching", "cv", "contact"] as const;
 export type PageSlug = (typeof pageSlugs)[number] | "about";
+export type Locale = "en" | "chn";
 
 export type SiteDetails = {
   name: string;
@@ -60,8 +61,12 @@ function text(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
-export async function getSiteDetails(): Promise<SiteDetails> {
-  const source = await readFile(path.join(contentDirectory, "site.md"), "utf8");
+function contentFileName(slug: PageSlug | "site", locale: Locale) {
+  return `${slug}${locale === "chn" ? "_chn" : ""}.md`;
+}
+
+export async function getSiteDetails(locale: Locale = "en"): Promise<SiteDetails> {
+  const source = await readFile(path.join(contentDirectory, contentFileName("site", locale)), "utf8");
   const { data } = parseFrontMatter(source);
 
   return {
@@ -79,8 +84,8 @@ export async function getSiteDetails(): Promise<SiteDetails> {
   };
 }
 
-export async function getMarkdownPage(slug: PageSlug): Promise<MarkdownPage> {
-  const source = await readFile(path.join(contentDirectory, `${slug}.md`), "utf8");
+export async function getMarkdownPage(slug: PageSlug, locale: Locale = "en"): Promise<MarkdownPage> {
+  const source = await readFile(path.join(contentDirectory, contentFileName(slug, locale)), "utf8");
   const { data, content } = parseFrontMatter(source);
   const visibleMarkdown = content.replace(/<!--[\s\S]*?-->/g, "").trim();
 

@@ -64,6 +64,10 @@ summary:focus-visible {
   gap: clamp(1rem, 2vw, 2.2rem);
 }
 
+.desktop-nav .language-switch {
+  margin-left: clamp(0.4rem, 1vw, 1rem);
+}
+
 .desktop-nav a,
 .mobile-nav a {
   position: relative;

@@ -27,13 +27,27 @@ function markdownBody(source) {
 }
 
 test("static export renders the Markdown-driven academic pages", async () => {
-  const [html, research, teaching, aboutSource] = await Promise.all([
+  const [
+    html,
+    research,
+    teaching,
+    chineseHome,
+    chineseResearch,
+    chineseTeaching,
+    aboutSource,
+    chineseAboutSource,
+  ] = await Promise.all([
     renderedHtml(),
     renderedHtml("research"),
     renderedHtml("teaching"),
+    renderedHtml("chn"),
+    renderedHtml("chn/research"),
+    renderedHtml("chn/teaching"),
     readFile(new URL("../content/about.md", import.meta.url), "utf8"),
+    readFile(new URL("../content/about_chn.md", import.meta.url), "utf8"),
   ]);
   const expectedAboutHtml = await marked.parse(markdownBody(aboutSource), { gfm: true });
+  const expectedChineseAboutHtml = await marked.parse(markdownBody(chineseAboutSource), { gfm: true });
 
   assert.match(html, /<title>Welcome! · Academic Portfolio<\/title>/i);
   assert.match(html, /<h1[^>]*>Welcome!<\/h1>/i);
@@ -41,6 +55,7 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.ok(html.includes(expectedAboutHtml));
   assert.match(html, /href="\/research\/"/i);
   assert.match(html, /href="\/teaching\/"/i);
+  assert.match(html, /href="\/chn\/"[^>]*>中文<\/a>/i);
   assert.doesNotMatch(html, /href="\/(?:book|papers|data)\/"/i);
   assert.match(html, /src="\/profile\.jpg"/i);
   assert.doesNotMatch(html, /<figcaption[^>]*>Profile<\/figcaption>/i);
@@ -53,16 +68,29 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(teaching, /class="content-page content-page-teaching"/i);
   for (const file of syllabusFiles) {
     assert.ok(teaching.includes(`href="../linkresource/${file}"`));
+    assert.ok(chineseTeaching.includes(`href="../../linkresource/${file}"`));
   }
   assert.doesNotMatch(teaching, /dropbox\.com/i);
+  assert.match(chineseHome, /<div id="top" lang="zh-CN">/i);
+  assert.match(chineseHome, /<h1[^>]*>欢迎！<\/h1>/i);
+  assert.ok(chineseHome.includes(expectedChineseAboutHtml));
+  assert.match(chineseHome, /href="\/"[^>]*>English<\/a>/i);
+  assert.match(chineseResearch, /<title>研究 · 邵立<\/title>/i);
+  assert.match(chineseResearch, />信息治理</i);
+  assert.match(chineseTeaching, /class="content-page content-page-teaching"/i);
 });
 
 test("teaching Markdown links every syllabus from the public site", async () => {
-  const teachingSource = await readFile(new URL("../content/teaching.md", import.meta.url), "utf8");
+  const [teachingSource, chineseTeachingSource] = await Promise.all([
+    readFile(new URL("../content/teaching.md", import.meta.url), "utf8"),
+    readFile(new URL("../content/teaching_chn.md", import.meta.url), "utf8"),
+  ]);
   const teachingHtml = await marked.parse(markdownBody(teachingSource), { gfm: true });
+  const chineseTeachingHtml = await marked.parse(markdownBody(chineseTeachingSource), { gfm: true });
 
   for (const file of syllabusFiles) {
     assert.ok(teachingHtml.includes(`href="../linkresource/${file}"`));
+    assert.ok(chineseTeachingHtml.includes(`href="../../linkresource/${file}"`));
     await access(new URL(`../public/linkresource/${file}`, import.meta.url));
   }
   assert.match(teachingHtml, /<li>Introduction to Comparative Politics[\s\S]*<ul>[\s\S]*Chinese Syllabus/i);
@@ -72,10 +100,35 @@ test("teaching Markdown links every syllabus from the public site", async () => 
     teachingHtml,
     /<em>Sample syllabus, class evaluation and student comments are available upon request\.<\/em>/i,
   );
+  assert.match(chineseTeachingHtml, /<em>课程大纲、课程评价及学生反馈可应要求提供。<\/em>/i);
+});
+
+test("keeps publication entries unchanged in the Chinese research Markdown", async () => {
+  const [englishResearch, chineseResearch] = await Promise.all([
+    readFile(new URL("../content/research.md", import.meta.url), "utf8"),
+    readFile(new URL("../content/research_chn.md", import.meta.url), "utf8"),
+  ]);
+  const publicationLines = (source) =>
+    markdownBody(source).split(/\r?\n/).filter((line) => line.startsWith("- "));
+
+  assert.deepEqual(publicationLines(chineseResearch), publicationLines(englishResearch));
 });
 
 test("keeps all page content in editable Markdown files", async () => {
-  const names = ["site", "about", "research", "teaching", "cv", "contact"];
+  const names = [
+    "site",
+    "about",
+    "research",
+    "teaching",
+    "cv",
+    "contact",
+    "site_chn",
+    "about_chn",
+    "research_chn",
+    "teaching_chn",
+    "cv_chn",
+    "contact_chn",
+  ];
   const [files, css] = await Promise.all([
     Promise.all(
       names.map((name) => readFile(new URL(`../content/${name}.md`, import.meta.url), "utf8")),
@@ -86,7 +139,7 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(files[0], /name:\s*\n/);
   assert.match(files[0], /wordmark:\s*"Li Shao, a Political Scientest"/);
   assert.match(files[0], /dropbox_cv_url:\s*"https:\/\/www\.dropbox\.com\/[^"]+"/);
-  assert.ok(files.slice(1).every((file) => /^---[\s\S]*title:/m.test(file)));
+  assert.ok(files.filter((_, index) => ![0, 6].includes(index)).every((file) => /^---[\s\S]*title:/m.test(file)));
   assert.ok(files.slice(1).every((file) => file.includes("<!--")));
   assert.match(css, /\.about-hero\s*{[^}]*align-items:\s*start;/s);
   assert.match(css, /\.site-header\s*{[^}]*padding:\s*0 7vw;/s);
