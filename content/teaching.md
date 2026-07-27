@@ -8,9 +8,9 @@ summary:
 
 ## Solo Instructor
 
-### Introduction to Comparative Politics (Beginner undergraduate, in Chinese) [Syllabus](https://www.dropbox.com/scl/fi/ajutrdsnwfzlefhbyw8lo/Syllabus2026v2.pdf?rlkey=deh6r6oua4npfu3nv2nw54iyq&dl=0)
-### Comparative Political Systems (Advanced undergraduate, in Chinese) [Syllabus](https://www.dropbox.com/scl/fi/mhsqgnmqjgxfsyaaud8wo/SyllabusCPI2026.pdf?rlkey=zatnz2wxvogzvp6o8n5djhruj&dl=0)
-### Political Science Research (Graduate Level, in English) [Syllabus](https://www.dropbox.com/scl/fi/k1olp1yu38w07za24yhea/syllabus2026.pdf?rlkey=p5l7ic7qb29ej16mqizjj4irv&dl=0)
+### Introduction to Comparative Politics (Beginner undergraduate, in Chinese) [Chinese Syllabus](../linkresource/zju_cp_syllabus.pdf) [English Syllabus (Translated)](../linkresource/zju_cp_syllabus_e_translate.pdf)
+### Comparative Political Systems (Advanced undergraduate, in Chinese) [Chinese Syllabus](../linkresource/zju_cpi_syllabus.pdf) [English Syllabus (Translated)](../linkresource/zju_cpi_syllabus_e_translate.pdf)
+### Political Science Research (Graduate Level, in English) [Syllabus](../linkresource/zju_psr_syllabus2026.pdf)
 ## Cooperative Instructor
 ### Classics in Global Governance; Academic Writing; Topics in Political Science
 
@@ -18,7 +18,7 @@ summary:
 
 # Syracuse University
 
-### Introduction to Political Analysis (Beginner undergraduate, in English)
+### Introduction to Political Analysis (Beginner undergraduate, in English) [Syllabus](../linkresource/syr_Syllabus_Intro_Political_Analysis.pdf)
 
 
 

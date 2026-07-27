@@ -4,6 +4,14 @@ import test from "node:test";
 import { marked } from "marked";
 
 const projectRoot = new URL("../", import.meta.url);
+const syllabusFiles = [
+  "zju_cp_syllabus.pdf",
+  "zju_cp_syllabus_e_translate.pdf",
+  "zju_cpi_syllabus.pdf",
+  "zju_cpi_syllabus_e_translate.pdf",
+  "zju_psr_syllabus2026.pdf",
+  "syr_Syllabus_Intro_Political_Analysis.pdf",
+];
 
 async function renderedHtml(page = "") {
   const relative = page ? `../out/${page}/index.html` : "../out/index.html";
@@ -41,7 +49,20 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(research, /class="content-page content-page-research"/i);
   assert.doesNotMatch(research, /class="(?:page-hero|markdown-section)/i);
   assert.match(teaching, /class="content-page content-page-teaching"/i);
-  assert.match(teaching, /<a href="https:\/\/www\.dropbox\.com\/[^"]+">Syllabus<\/a>/i);
+  for (const file of syllabusFiles) {
+    assert.ok(teaching.includes(`href="../linkresource/${file}"`));
+  }
+  assert.doesNotMatch(teaching, /dropbox\.com/i);
+});
+
+test("teaching Markdown links every syllabus from the public site", async () => {
+  const teachingSource = await readFile(new URL("../content/teaching.md", import.meta.url), "utf8");
+  const teachingHtml = await marked.parse(markdownBody(teachingSource), { gfm: true });
+
+  for (const file of syllabusFiles) {
+    assert.ok(teachingHtml.includes(`href="../linkresource/${file}"`));
+    await access(new URL(`../public/linkresource/${file}`, import.meta.url));
+  }
 });
 
 test("keeps all page content in editable Markdown files", async () => {
@@ -75,6 +96,9 @@ test("keeps all page content in editable Markdown files", async () => {
   await Promise.all([
     access(new URL("../public/profile.jpg", import.meta.url)),
     access(new URL("../public/cv.pdf", import.meta.url)),
+    ...syllabusFiles.map((file) =>
+      access(new URL(`../public/linkresource/${file}`, import.meta.url)),
+    ),
     access(new URL("../.github/workflows/pages.yml", import.meta.url)),
   ]);
   await Promise.all(
