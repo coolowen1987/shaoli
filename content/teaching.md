@@ -4,6 +4,8 @@ eyebrow:
 summary:
 ---
 
+*Sample syllabus, class evaluation and student comments are available upon request.*
+
 # Zhejiang University
 
 ## Solo Instructor
@@ -32,14 +34,14 @@ summary:
 
 # Teaching Interests
 
-### Information Politics, Chinese Politics, Public Opinion, Political behaviors
+- Information Politics, Chinese Politics, Public Opinion, Political behaviors
 
-### Research design, Quantitative Research methods, Academic Writing
-
-
+- Research design, Quantitative Research methods, Academic Writing
 
 
-*Sample syllabus, class evaluation and student comments are available upon request.*
+
+
+
 
 <!--
 Add teaching interests and courses here. For example:
