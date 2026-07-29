@@ -72,6 +72,7 @@ test("static export renders the Markdown-driven academic pages", async () => {
   }
   assert.match(chineseHome, /<div id="top" lang="zh-CN">/i);
   assert.match(chineseHome, /class="about-hero"/i);
+  assert.match(chineseHome, /class="about-hero-inner"/i);
   assert.match(chineseHome, /<h1[^>]*>欢迎！<\/h1>/i);
   assert.ok(chineseHome.includes(expectedChineseAboutHtml));
   assert.match(chineseHome, /href="\/"[^>]*>English<\/a>/i);
@@ -141,16 +142,18 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(files[0], /dropbox_cv_url:\s*"https:\/\/www\.dropbox\.com\/[^"]+"/);
   assert.ok(files.filter((_, index) => ![0, 6].includes(index)).every((file) => /^---[\s\S]*title:/m.test(file)));
   assert.ok(files.slice(1).every((file) => file.includes("<!--")));
-  assert.match(css, /\.about-hero\s*{[^}]*align-items:\s*start;/s);
-  assert.match(css, /--site-max-width:\s*1320px;/);
+  assert.match(css, /--site-max-width:\s*1400px;/);
+  assert.match(css, /--content-max-width:\s*1176px;/);
+  assert.match(css, /body\s*{[^}]*background:\s*var\(--paper\);/s);
   assert.match(css, /\.site-header,\s*main,\s*footer\s*{[^}]*width:\s*min\(100%,\s*var\(--site-max-width\)\);[^}]*margin-inline:\s*auto;/s);
   assert.match(css, /\.site-header\s*{[^}]*padding:\s*0 var\(--page-gutter\);/s);
   assert.match(css, /\.desktop-nav a\s*{[^}]*font-size:\s*var\(--header-font-size\);/s);
-  assert.match(css, /\.about-hero\s*{[^}]*width:\s*100%;[^}]*gap:\s*clamp\(2rem,\s*4vw,\s*4rem\);[^}]*padding:[^;]*var\(--page-gutter\)/s);
+  assert.match(css, /\.about-hero\s*{[^}]*width:\s*100%;[^}]*padding:[^;]*var\(--page-gutter\)/s);
+  assert.match(css, /\.about-hero-inner\s*{[^}]*max-width:\s*var\(--content-max-width\);[^}]*align-items:\s*center;[^}]*gap:\s*clamp\(2rem,\s*4vw,\s*4rem\);[^}]*margin-inline:\s*auto;/s);
   assert.match(css, /\.about-copy h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*5vw,\s*5rem\);/s);
   assert.match(css, /\.about-introduction\s*{[^}]*max-width:\s*none;/s);
   assert.match(css, /\.content-page\s*{[^}]*padding:[^;]*var\(--page-gutter\)[^}]*background:\s*var\(--paper\);/s);
-  assert.match(css, /\.content-page-copy\s*{[^}]*width:\s*100%;/s);
+  assert.match(css, /\.content-page-copy\s*{[^}]*width:\s*100%;[^}]*max-width:\s*var\(--content-max-width\);[^}]*margin-inline:\s*auto;/s);
   assert.match(css, /\.content-page h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*5vw,\s*5rem\);/s);
   assert.match(css, /@media\s*\(max-width:\s*720px\)[\s\S]*\.about-copy h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*13vw,\s*4rem\);/s);
   assert.match(css, /@media\s*\(max-width:\s*720px\)[\s\S]*\.content-page h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*13vw,\s*4rem\);/s);

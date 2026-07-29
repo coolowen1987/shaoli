@@ -9,7 +9,8 @@
   --accent: #8b3d3b;
   --serif: Georgia, "Times New Roman", serif;
   --sans: Arial, Helvetica, sans-serif;
-  --site-max-width: 1320px;
+  --site-max-width: 1400px;
+  --content-max-width: 1176px;
   --page-gutter: clamp(1.5rem, 5vw, 4.5rem);
   --header-font-size: clamp(0.95rem, 1.35vw, 1.15rem);
 }
@@ -23,7 +24,7 @@ html {
 
 body {
   margin: 0;
-  background: #0d0f12;
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -114,15 +115,21 @@ summary:focus-visible {
 .mobile-nav { display: none; }
 
 .about-hero {
-  display: grid;
   width: 100%;
   min-height: calc(100vh - 181px);
-  align-items: start;
-  gap: clamp(2rem, 4vw, 4rem);
   margin: 0;
   padding: clamp(3rem, 6vw, 5.5rem) var(--page-gutter) clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid var(--line);
   background: var(--paper);
+}
+
+.about-hero-inner {
+  display: grid;
+  width: 100%;
+  max-width: var(--content-max-width);
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
+  margin-inline: auto;
   grid-template-columns: minmax(0, 1fr) minmax(250px, 330px);
 }
 
@@ -205,6 +212,8 @@ summary:focus-visible {
 
 .content-page-copy {
   width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
 }
 
 .content-page h1 {
@@ -394,7 +403,7 @@ footer a { justify-self: end; }
   .mobile-nav summary::-webkit-details-marker { display: none; }
   .mobile-nav nav { position: absolute; top: 2.3rem; right: 0; display: grid; width: 210px; padding: 1rem; border: 1px solid var(--line); background: var(--paper-light); box-shadow: 0 18px 50px rgba(20, 34, 56, 0.12); }
   .mobile-nav nav a { padding: 0.65rem; }
-  .about-hero {
+  .about-hero-inner {
     gap: clamp(1.75rem, 4vw, 3rem);
     grid-template-columns: minmax(0, 1fr) minmax(230px, 300px);
   }
@@ -407,8 +416,10 @@ footer a { justify-self: end; }
   .about-hero {
     width: 100%;
     min-height: auto;
-    gap: 3rem;
     padding: 4.5rem var(--page-gutter) 5rem;
+  }
+  .about-hero-inner {
+    gap: 3rem;
     grid-template-columns: 1fr;
   }
   .about-copy h1 { font-size: clamp(2.75rem, 13vw, 4rem); }

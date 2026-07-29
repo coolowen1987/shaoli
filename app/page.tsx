@@ -15,22 +15,24 @@ export default async function Home() {
   return (
     <div id="top">
       <section className="about-hero" aria-labelledby="about-title">
-        <div className="about-copy">
-          <p className="eyebrow">{page.eyebrow}</p>
-          <h1 id="about-title">{page.title}</h1>
-          <div className="about-introduction">
-            <MarkdownContent page={page} />
+        <div className="about-hero-inner">
+          <div className="about-copy">
+            <p className="eyebrow">{page.eyebrow}</p>
+            <h1 id="about-title">{page.title}</h1>
+            <div className="about-introduction">
+              <MarkdownContent page={page} />
+            </div>
           </div>
-        </div>
 
-        <div className="about-portrait">
-          <img
-            className="about-portrait-image"
-            src={`${basePath}/profile.jpg`}
-            alt={site.name ? `Portrait of ${site.name}` : "Profile portrait"}
-            width="614"
-            height="899"
-          />
+          <div className="about-portrait">
+            <img
+              className="about-portrait-image"
+              src={`${basePath}/profile.jpg`}
+              alt={site.name ? `Portrait of ${site.name}` : "Profile portrait"}
+              width="614"
+              height="899"
+            />
+          </div>
         </div>
       </section>
     </div>
