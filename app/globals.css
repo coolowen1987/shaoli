@@ -9,6 +9,9 @@
   --accent: #8b3d3b;
   --serif: Georgia, "Times New Roman", serif;
   --sans: Arial, Helvetica, sans-serif;
+  --site-max-width: 1320px;
+  --page-gutter: clamp(1.5rem, 5vw, 4.5rem);
+  --header-font-size: clamp(0.95rem, 1.35vw, 1.15rem);
 }
 
 * { box-sizing: border-box; }
@@ -20,11 +23,22 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper-light);
+  background: #0d0f12;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.65;
+}
+
+.site-header,
+main,
+footer {
+  width: min(100%, var(--site-max-width));
+  margin-inline: auto;
+}
+
+main {
+  background: var(--paper);
 }
 
 a { color: inherit; text-decoration: none; }
@@ -43,7 +57,7 @@ summary:focus-visible {
   min-height: 84px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 7vw;
+  padding: 0 var(--page-gutter);
   border-bottom: 1px solid rgba(20, 34, 56, 0.14);
   background: rgba(251, 250, 247, 0.94);
   backdrop-filter: blur(12px);
@@ -52,7 +66,7 @@ summary:focus-visible {
 .wordmark {
   min-width: 180px;
   font-family: var(--serif);
-  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+  font-size: var(--header-font-size);
   font-weight: 700;
   letter-spacing: -0.02em;
   white-space: nowrap;
@@ -61,19 +75,26 @@ summary:focus-visible {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 2vw, 2.2rem);
+  gap: clamp(0.85rem, 1.5vw, 1.6rem);
 }
 
 .desktop-nav .language-switch {
   margin-left: clamp(0.4rem, 1vw, 1rem);
 }
 
-.desktop-nav a,
+.desktop-nav a {
+  position: relative;
+  font-size: var(--header-font-size);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .mobile-nav a {
   position: relative;
-  font-size: 0.69rem;
+  font-size: 0.86rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -97,12 +118,12 @@ summary:focus-visible {
   width: 100%;
   min-height: calc(100vh - 181px);
   align-items: start;
-  gap: clamp(3rem, 8vw, 8rem);
+  gap: clamp(2rem, 4vw, 4rem);
   margin: 0;
-  padding: clamp(3rem, 6vw, 5.5rem) 7vw clamp(5rem, 8vw, 7rem);
+  padding: clamp(3rem, 6vw, 5.5rem) var(--page-gutter) clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid var(--line);
   background: var(--paper);
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 330px);
 }
 
 .eyebrow,
@@ -125,7 +146,7 @@ summary:focus-visible {
 }
 
 .about-introduction {
-  max-width: 680px;
+  max-width: none;
 }
 
 .about-introduction .markdown-body {
@@ -177,13 +198,13 @@ summary:focus-visible {
 
 .content-page {
   min-height: calc(100vh - 181px);
-  padding: clamp(3rem, 6vw, 5.5rem) 7vw clamp(5rem, 8vw, 7rem);
+  padding: clamp(3rem, 6vw, 5.5rem) var(--page-gutter) clamp(5rem, 8vw, 7rem);
   border-bottom: 1px solid var(--line);
   background: var(--paper);
 }
 
 .content-page-copy {
-  width: min(100%, 900px);
+  width: 100%;
 }
 
 .content-page h1 {
@@ -330,7 +351,7 @@ footer {
   min-height: 96px;
   align-items: center;
   gap: 1rem;
-  padding: 1.5rem 7vw;
+  padding: 1.5rem var(--page-gutter);
   border-top: 1px solid var(--line);
   background: var(--paper-light);
   color: var(--ink-soft);
@@ -366,7 +387,7 @@ footer a { justify-self: end; }
   background: repeating-linear-gradient(to bottom, transparent 0, transparent 1.55rem, #c5c2bb 1.55rem, #c5c2bb calc(1.55rem + 1px));
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1100px) {
   .desktop-nav { display: none; }
   .mobile-nav { position: relative; display: block; }
   .mobile-nav summary { cursor: pointer; font-size: 0.69rem; font-weight: 700; letter-spacing: 0.12em; list-style: none; text-transform: uppercase; }
@@ -374,8 +395,8 @@ footer a { justify-self: end; }
   .mobile-nav nav { position: absolute; top: 2.3rem; right: 0; display: grid; width: 210px; padding: 1rem; border: 1px solid var(--line); background: var(--paper-light); box-shadow: 0 18px 50px rgba(20, 34, 56, 0.12); }
   .mobile-nav nav a { padding: 0.65rem; }
   .about-hero {
-    gap: 3.5rem;
-    grid-template-columns: minmax(0, 1fr) minmax(240px, 310px);
+    gap: clamp(1.75rem, 4vw, 3rem);
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 300px);
   }
 }
 
@@ -387,12 +408,12 @@ footer a { justify-self: end; }
     width: 100%;
     min-height: auto;
     gap: 3rem;
-    padding: 4.5rem 7vw 5rem;
+    padding: 4.5rem var(--page-gutter) 5rem;
     grid-template-columns: 1fr;
   }
   .about-copy h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
   .about-portrait { width: min(100%, 340px); justify-self: center; }
-  .content-page { min-height: auto; padding: 4.5rem 7vw 5rem; }
+  .content-page { min-height: auto; padding: 4.5rem var(--page-gutter) 5rem; }
   .content-page h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
   .contact-details { grid-template-columns: 1fr; }
   .contact-details > div { min-height: 130px; }
