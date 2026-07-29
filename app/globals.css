@@ -133,8 +133,7 @@ summary:focus-visible {
   grid-template-columns: minmax(0, 1fr) minmax(250px, 330px);
 }
 
-.eyebrow,
-.mini-label {
+.eyebrow {
   margin: 0 0 1rem;
   color: var(--accent);
   font-size: 0.67rem;
@@ -337,24 +336,6 @@ summary:focus-visible {
 
 .page-action { margin-top: 4rem; justify-self: start; }
 
-.contact-details {
-  display: grid;
-  width: 100%;
-  gap: 1px;
-  margin-top: 5rem;
-  background: var(--line);
-  border: 1px solid var(--line);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.contact-details > div {
-  min-height: 165px;
-  padding: 2rem;
-  background: var(--paper-light);
-}
-
-.contact-details a { display: block; margin-bottom: 0.45rem; border-bottom: 1px solid var(--ink); width: fit-content; }
-
 footer {
   display: grid;
   min-height: 96px;
@@ -385,7 +366,6 @@ footer a { justify-self: end; }
 .blank-line.long { width: min(100%, 26rem); }
 .blank-line.medium { width: min(100%, 20rem); }
 .blank-line.short { width: min(100%, 11rem); }
-.blank-contact { width: min(100%, 12rem); height: 1.5rem; }
 .blank-footer { width: 7rem; height: 0.8rem; }
 
 .blank-paragraph {
@@ -426,8 +406,6 @@ footer a { justify-self: end; }
   .about-portrait { width: min(100%, 340px); justify-self: center; }
   .content-page { min-height: auto; padding: 4.5rem var(--page-gutter) 5rem; }
   .content-page h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
-  .contact-details { grid-template-columns: 1fr; }
-  .contact-details > div { min-height: 130px; }
   footer { align-items: start; grid-template-columns: 1fr; }
   footer a { justify-self: start; }
 }

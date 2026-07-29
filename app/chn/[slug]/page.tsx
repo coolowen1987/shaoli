@@ -42,11 +42,6 @@ export default async function ChineseContentPage({ params }: PageProps) {
     getSiteDetails("chn"),
   ]);
   const cvHref = site.dropboxCvUrl || `${basePath}/cv.pdf`;
-  const links = [
-    ["Google Scholar", site.googleScholarUrl],
-    ["ORCID", site.orcidUrl],
-    ["GitHub", site.githubUrl],
-  ].filter(([, url]) => url);
 
   return (
     <div id="top" className="inner-page" lang="zh-CN">
@@ -66,24 +61,6 @@ export default async function ChineseContentPage({ params }: PageProps) {
             </a>
           ) : null}
 
-          {slug === "contact" ? (
-            <div className="contact-details">
-              <div>
-                <p className="mini-label">电子邮箱</p>
-                {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span className="blank blank-contact" />}
-              </div>
-              <div>
-                <p className="mini-label">办公室</p>
-                {site.office || <span className="blank blank-contact" />}
-              </div>
-              <div>
-                <p className="mini-label">其他链接</p>
-                {links.length ? links.map(([label, url]) => (
-                  <a href={url} target="_blank" rel="noreferrer" key={label}>{label}</a>
-                )) : <span className="blank blank-contact" />}
-              </div>
-            </div>
-          ) : null}
         </div>
       </section>
     </div>

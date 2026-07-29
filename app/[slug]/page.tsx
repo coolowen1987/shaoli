@@ -35,11 +35,6 @@ export default async function ContentPage({ params }: PageProps) {
 
   const [page, site] = await Promise.all([getMarkdownPage(slug), getSiteDetails()]);
   const cvHref = site.dropboxCvUrl || `${basePath}/cv.pdf`;
-  const links = [
-    ["Google Scholar", site.googleScholarUrl],
-    ["ORCID", site.orcidUrl],
-    ["GitHub", site.githubUrl],
-  ].filter(([, url]) => url);
 
   return (
     <div id="top" className="inner-page">
@@ -59,24 +54,6 @@ export default async function ContentPage({ params }: PageProps) {
             </a>
           ) : null}
 
-          {slug === "contact" ? (
-            <div className="contact-details">
-              <div>
-                <p className="mini-label">Email</p>
-                {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span className="blank blank-contact" />}
-              </div>
-              <div>
-                <p className="mini-label">Office</p>
-                {site.office || <span className="blank blank-contact" />}
-              </div>
-              <div>
-                <p className="mini-label">Elsewhere</p>
-                {links.length ? links.map(([label, url]) => (
-                  <a href={url} target="_blank" rel="noreferrer" key={label}>{label}</a>
-                )) : <span className="blank blank-contact" />}
-              </div>
-            </div>
-          ) : null}
         </div>
       </section>
     </div>

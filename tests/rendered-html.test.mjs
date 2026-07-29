@@ -34,6 +34,8 @@ test("static export renders the Markdown-driven academic pages", async () => {
     chineseHome,
     chineseResearch,
     chineseTeaching,
+    contact,
+    chineseContact,
     aboutSource,
     chineseAboutSource,
   ] = await Promise.all([
@@ -43,6 +45,8 @@ test("static export renders the Markdown-driven academic pages", async () => {
     renderedHtml("chn"),
     renderedHtml("chn/research"),
     renderedHtml("chn/teaching"),
+    renderedHtml("contact"),
+    renderedHtml("chn/contact"),
     readFile(new URL("../content/about.md", import.meta.url), "utf8"),
     readFile(new URL("../content/about_chn.md", import.meta.url), "utf8"),
   ]);
@@ -79,6 +83,8 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(chineseResearch, /<title>研究 · 邵立<\/title>/i);
   assert.match(chineseResearch, />信息治理</i);
   assert.match(chineseTeaching, /class="content-page content-page-teaching"/i);
+  assert.doesNotMatch(contact, /class="contact-details"/i);
+  assert.doesNotMatch(chineseContact, /class="contact-details"/i);
 });
 
 test("teaching Markdown links every syllabus from the public site", async () => {
