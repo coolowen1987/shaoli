@@ -4,7 +4,7 @@ eyebrow:
 summary:
 ---
 
-# Please click the button below for my latest CV.
+Please click the button below for my latest CV.
 
 <!--
 Optional: add a short note about your CV here.

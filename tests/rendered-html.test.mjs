@@ -147,9 +147,13 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(css, /\.site-header\s*{[^}]*padding:\s*0 var\(--page-gutter\);/s);
   assert.match(css, /\.desktop-nav a\s*{[^}]*font-size:\s*var\(--header-font-size\);/s);
   assert.match(css, /\.about-hero\s*{[^}]*width:\s*100%;[^}]*gap:\s*clamp\(2rem,\s*4vw,\s*4rem\);[^}]*padding:[^;]*var\(--page-gutter\)/s);
+  assert.match(css, /\.about-copy h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*5vw,\s*5rem\);/s);
   assert.match(css, /\.about-introduction\s*{[^}]*max-width:\s*none;/s);
   assert.match(css, /\.content-page\s*{[^}]*padding:[^;]*var\(--page-gutter\)[^}]*background:\s*var\(--paper\);/s);
   assert.match(css, /\.content-page-copy\s*{[^}]*width:\s*100%;/s);
+  assert.match(css, /\.content-page h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*5vw,\s*5rem\);/s);
+  assert.match(css, /@media\s*\(max-width:\s*720px\)[\s\S]*\.about-copy h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*13vw,\s*4rem\);/s);
+  assert.match(css, /@media\s*\(max-width:\s*720px\)[\s\S]*\.content-page h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*13vw,\s*4rem\);/s);
   assert.match(css, /\.markdown-body ul\s*{[^}]*list-style:\s*none;/s);
   assert.match(css, /\.markdown-body ul > li::before\s*{[^}]*content:\s*"▶";/s);
   assert.match(css, /\.content-page-research \.markdown-body a\s*{[^}]*border-bottom-color:\s*transparent;/s);
