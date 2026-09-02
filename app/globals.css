@@ -288,6 +288,7 @@ summary:focus-visible {
 }
 .content-page-research .markdown-body a {
   border-bottom-color: transparent;
+  white-space: nowrap;
   transition: border-color 160ms ease;
 }
 .content-page-teaching .markdown-body h3 a {

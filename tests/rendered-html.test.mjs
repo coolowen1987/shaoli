@@ -68,6 +68,10 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(research, /<title>Research · Academic Portfolio<\/title>/i);
   assert.match(research, />Research</i);
   assert.match(research, /class="content-page content-page-research"/i);
+  assert.match(research, /<a href="[^"]+">\[Link\]<\/a>/i);
+  assert.doesNotMatch(research, /<\/a>\]/i);
+  assert.match(chineseResearch, /<a href="[^"]+">\[Link\]<\/a>/i);
+  assert.doesNotMatch(chineseResearch, /<\/a>\]/i);
   assert.doesNotMatch(research, /class="(?:page-hero|markdown-section)/i);
   assert.match(teaching, /class="content-page content-page-teaching"/i);
   for (const file of syllabusFiles) {
@@ -165,7 +169,7 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(css, /@media\s*\(max-width:\s*720px\)[\s\S]*\.content-page h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*13vw,\s*4rem\);/s);
   assert.match(css, /\.markdown-body ul\s*{[^}]*list-style:\s*none;/s);
   assert.match(css, /\.markdown-body ul > li::before\s*{[^}]*content:\s*"▶";/s);
-  assert.match(css, /\.content-page-research \.markdown-body a\s*{[^}]*border-bottom-color:\s*transparent;/s);
+  assert.match(css, /\.content-page-research \.markdown-body a\s*{[^}]*border-bottom-color:\s*transparent;[^}]*white-space:\s*nowrap;/s);
   assert.match(css, /\.content-page-research \.markdown-body a:hover,[^}]*border-bottom-color:\s*currentColor;/s);
   assert.match(css, /\.content-page-teaching \.markdown-body h3 a\s*{[^}]*border-bottom-color:\s*transparent;/s);
   assert.match(css, /\.content-page-teaching \.markdown-body h3 a:hover,[^}]*border-bottom-color:\s*currentColor;/s);
