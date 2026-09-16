@@ -10,6 +10,7 @@ You do not need to edit the webpage code for ordinary updates. All editable cont
 | --- | --- |
 | `content/site.md` | Header wordmark, name, title, affiliation, location, email, office, CV link, and profile links |
 | `content/about.md` | Front-page biography and research overview |
+| `content/news.md` | Dated news items shown below the biography and portrait on the front page |
 | `content/research.md` | Publications, projects, and research resources |
 | `content/teaching.md` | Teaching interests and courses |
 | `content/cv.md` | Optional CV-page introduction |
@@ -17,7 +18,7 @@ You do not need to edit the webpage code for ordinary updates. All editable cont
 
 Each page file has a small front-matter block between `---` lines and a commented example. Replace the comment with your own Markdown. All personal values are intentionally blank.
 
-The Chinese site is available under `/chn/`. Its editable content uses matching `_chn.md` files, such as `content/about_chn.md`, `content/research_chn.md`, and `content/teaching_chn.md`. Publication entries in the two research files should remain identical; only the Chinese page title and section headings are translated.
+The Chinese site is available under `/chn/`. Its editable content uses matching `_chn.md` files, such as `content/about_chn.md`, `content/news_chn.md`, `content/research_chn.md`, and `content/teaching_chn.md`. Publication entries in the two research files should remain identical; only the Chinese page title and section headings are translated.
 
 - Replace `public/profile.jpg` to update the front-page portrait.
 - Replace `public/cv.pdf` to update the bundled CV fallback.

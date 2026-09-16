@@ -10,7 +10,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const [site, page] = await Promise.all([getSiteDetails(), getMarkdownPage("about")]);
+  const [site, page, news] = await Promise.all([
+    getSiteDetails(),
+    getMarkdownPage("about"),
+    getMarkdownPage("news"),
+  ]);
 
   return (
     <div id="top">
@@ -32,6 +36,17 @@ export default async function Home() {
               width="614"
               height="899"
             />
+          </div>
+        </div>
+      </section>
+
+      <section className="news-section" aria-labelledby="news-title">
+        <div className="news-section-inner">
+          {news.eyebrow ? <p className="eyebrow">{news.eyebrow}</p> : null}
+          <h2 id="news-title">{news.title}</h2>
+          {news.summary ? <p className="news-summary">{news.summary}</p> : null}
+          <div className="news-list">
+            <MarkdownContent page={news} />
           </div>
         </div>
       </section>

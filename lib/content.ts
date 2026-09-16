@@ -3,7 +3,8 @@ import path from "node:path";
 import { marked } from "marked";
 
 export const pageSlugs = ["research", "teaching", "cv", "contact"] as const;
-export type PageSlug = (typeof pageSlugs)[number] | "about";
+export type PageSlug = (typeof pageSlugs)[number];
+export type ContentSlug = PageSlug | "about" | "news";
 export type Locale = "en" | "chn";
 
 export type SiteDetails = {
@@ -21,7 +22,7 @@ export type SiteDetails = {
 };
 
 export type MarkdownPage = {
-  slug: PageSlug;
+  slug: ContentSlug;
   title: string;
   eyebrow: string;
   summary: string;
@@ -61,7 +62,7 @@ function text(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function contentFileName(slug: PageSlug | "site", locale: Locale) {
+function contentFileName(slug: ContentSlug | "site", locale: Locale) {
   return `${slug}${locale === "chn" ? "_chn" : ""}.md`;
 }
 
@@ -84,7 +85,7 @@ export async function getSiteDetails(locale: Locale = "en"): Promise<SiteDetails
   };
 }
 
-export async function getMarkdownPage(slug: PageSlug, locale: Locale = "en"): Promise<MarkdownPage> {
+export async function getMarkdownPage(slug: ContentSlug, locale: Locale = "en"): Promise<MarkdownPage> {
   const source = await readFile(path.join(contentDirectory, contentFileName(slug, locale)), "utf8");
   const { data, content } = parseFrontMatter(source);
   const visibleMarkdown = content.replace(/<!--[\s\S]*?-->/g, "").trim();

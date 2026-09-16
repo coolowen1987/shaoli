@@ -15,8 +15,8 @@ export function generateStaticParams() {
   return pageSlugs.map((slug) => ({ slug }));
 }
 
-function isPageSlug(value: string): value is Exclude<PageSlug, "about"> {
-  return pageSlugs.includes(value as Exclude<PageSlug, "about">);
+function isPageSlug(value: string): value is PageSlug {
+  return pageSlugs.includes(value as PageSlug);
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

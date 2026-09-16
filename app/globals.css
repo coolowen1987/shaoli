@@ -182,6 +182,61 @@ summary:focus-visible {
   filter: saturate(0.84) contrast(1.02);
 }
 
+.news-section {
+  width: 100%;
+  padding: clamp(4rem, 7vw, 6rem) var(--page-gutter);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-light);
+}
+
+.news-section-inner {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.news-section h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.news-summary {
+  max-width: 680px;
+  margin: 1.5rem 0 0;
+  color: var(--ink-soft);
+  font-size: 1.08rem;
+}
+
+.news-list {
+  margin-top: 2rem;
+}
+
+.news-list .markdown-body {
+  color: var(--ink-soft);
+}
+
+.news-list .markdown-body ul {
+  margin-bottom: 0;
+}
+
+.news-list .markdown-body li {
+  margin: 0;
+  padding: 1rem 0 1rem 0.3rem;
+  border-top: 1px solid var(--line);
+}
+
+.news-list .markdown-body li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.news-list .markdown-body ul > li::before {
+  top: 1.55rem;
+}
+
 .button {
   display: inline-flex;
   min-height: 48px;
@@ -405,6 +460,7 @@ footer a { justify-self: end; }
   }
   .about-copy h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
   .about-portrait { width: min(100%, 340px); justify-self: center; }
+  .news-section { padding: 4rem var(--page-gutter); }
   .content-page { min-height: auto; padding: 4.5rem var(--page-gutter) 5rem; }
   .content-page h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
   footer { align-items: start; grid-template-columns: 1fr; }

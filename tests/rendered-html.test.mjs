@@ -38,6 +38,8 @@ test("static export renders the Markdown-driven academic pages", async () => {
     chineseContact,
     aboutSource,
     chineseAboutSource,
+    newsSource,
+    chineseNewsSource,
   ] = await Promise.all([
     renderedHtml(),
     renderedHtml("research"),
@@ -49,9 +51,13 @@ test("static export renders the Markdown-driven academic pages", async () => {
     renderedHtml("chn/contact"),
     readFile(new URL("../content/about.md", import.meta.url), "utf8"),
     readFile(new URL("../content/about_chn.md", import.meta.url), "utf8"),
+    readFile(new URL("../content/news.md", import.meta.url), "utf8"),
+    readFile(new URL("../content/news_chn.md", import.meta.url), "utf8"),
   ]);
   const expectedAboutHtml = await marked.parse(markdownBody(aboutSource), { gfm: true });
   const expectedChineseAboutHtml = await marked.parse(markdownBody(chineseAboutSource), { gfm: true });
+  const expectedNewsHtml = await marked.parse(markdownBody(newsSource), { gfm: true });
+  const expectedChineseNewsHtml = await marked.parse(markdownBody(chineseNewsSource), { gfm: true });
 
   assert.match(html, /<title>Welcome! · Academic Portfolio<\/title>/i);
   assert.match(html, /<h1[^>]*>Welcome!<\/h1>/i);
@@ -62,6 +68,10 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(html, /href="\/chn\/"[^>]*>中文<\/a>/i);
   assert.doesNotMatch(html, /href="\/(?:book|papers|data)\/"/i);
   assert.match(html, /src="\/profile\.jpg"/i);
+  assert.match(html, /<section class="news-section"[^>]*aria-labelledby="news-title"/i);
+  assert.match(html, /<h2 id="news-title">News<\/h2>/i);
+  assert.ok(html.includes(expectedNewsHtml));
+  assert.ok(html.indexOf('class="about-portrait"') < html.indexOf('class="news-section"'));
   assert.doesNotMatch(html, /<figcaption[^>]*>Profile<\/figcaption>/i);
   assert.doesNotMatch(html, /Read profile|Curriculum vitae/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
@@ -83,6 +93,9 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(chineseHome, /class="about-hero-inner"/i);
   assert.match(chineseHome, /<h1[^>]*>欢迎！<\/h1>/i);
   assert.ok(chineseHome.includes(expectedChineseAboutHtml));
+  assert.match(chineseHome, /<h2 id="news-title">新闻动态<\/h2>/i);
+  assert.ok(chineseHome.includes(expectedChineseNewsHtml));
+  assert.ok(chineseHome.indexOf('class="about-portrait"') < chineseHome.indexOf('class="news-section"'));
   assert.match(chineseHome, /href="\/"[^>]*>English<\/a>/i);
   assert.match(chineseResearch, /<title>研究 · 邵立<\/title>/i);
   assert.match(chineseResearch, />信息治理</i);
@@ -129,12 +142,14 @@ test("keeps all page content in editable Markdown files", async () => {
   const names = [
     "site",
     "about",
+    "news",
     "research",
     "teaching",
     "cv",
     "contact",
     "site_chn",
     "about_chn",
+    "news_chn",
     "research_chn",
     "teaching_chn",
     "cv_chn",
@@ -146,12 +161,13 @@ test("keeps all page content in editable Markdown files", async () => {
     ),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
+  const pageFiles = files.filter((_, index) => !names[index].startsWith("site"));
 
   assert.match(files[0], /name:\s*\n/);
   assert.match(files[0], /wordmark:\s*"Li Shao, a Political Scientest"/);
   assert.match(files[0], /dropbox_cv_url:\s*"https:\/\/www\.dropbox\.com\/[^"]+"/);
-  assert.ok(files.filter((_, index) => ![0, 6].includes(index)).every((file) => /^---[\s\S]*title:/m.test(file)));
-  assert.ok(files.slice(1).every((file) => file.includes("<!--")));
+  assert.ok(pageFiles.every((file) => /^---[\s\S]*title:/m.test(file)));
+  assert.ok(pageFiles.every((file) => file.includes("<!--")));
   assert.match(css, /--site-max-width:\s*1400px;/);
   assert.match(css, /--content-max-width:\s*1176px;/);
   assert.match(css, /body\s*{[^}]*background:\s*var\(--paper\);/s);
@@ -162,6 +178,8 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(css, /\.about-hero-inner\s*{[^}]*max-width:\s*var\(--content-max-width\);[^}]*align-items:\s*center;[^}]*gap:\s*clamp\(2rem,\s*4vw,\s*4rem\);[^}]*margin-inline:\s*auto;/s);
   assert.match(css, /\.about-copy h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*5vw,\s*5rem\);/s);
   assert.match(css, /\.about-introduction\s*{[^}]*max-width:\s*none;/s);
+  assert.match(css, /\.news-section-inner\s*{[^}]*max-width:\s*var\(--content-max-width\);[^}]*margin-inline:\s*auto;/s);
+  assert.match(css, /\.news-list \.markdown-body li\s*{[^}]*border-top:\s*1px solid var\(--line\);/s);
   assert.match(css, /\.content-page\s*{[^}]*padding:[^;]*var\(--page-gutter\)[^}]*background:\s*var\(--paper\);/s);
   assert.match(css, /\.content-page-copy\s*{[^}]*width:\s*100%;[^}]*max-width:\s*var\(--content-max-width\);[^}]*margin-inline:\s*auto;/s);
   assert.match(css, /\.content-page h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*5vw,\s*5rem\);/s);
