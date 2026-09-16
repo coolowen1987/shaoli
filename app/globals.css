@@ -198,7 +198,7 @@ summary:focus-visible {
 .news-section h2 {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-size: 2.8rem;
   font-weight: 400;
   letter-spacing: -0.045em;
   line-height: 1;
@@ -461,6 +461,7 @@ footer a { justify-self: end; }
   .about-copy h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
   .about-portrait { width: min(100%, 340px); justify-self: center; }
   .news-section { padding: 2rem var(--page-gutter) 4rem; }
+  .news-section h2 { font-size: clamp(2.75rem, 13vw, 4rem); }
   .content-page { min-height: auto; padding: 4.5rem var(--page-gutter) 5rem; }
   .content-page h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
   footer { align-items: start; grid-template-columns: 1fr; }
