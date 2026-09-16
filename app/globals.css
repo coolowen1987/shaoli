@@ -116,9 +116,9 @@ summary:focus-visible {
 
 .about-hero {
   width: 100%;
-  min-height: calc(100vh - 181px);
+  min-height: auto;
   margin: 0;
-  padding: clamp(3rem, 6vw, 5.5rem) var(--page-gutter) clamp(5rem, 8vw, 7rem);
+  padding: clamp(3rem, 6vw, 5.5rem) var(--page-gutter) clamp(2.5rem, 4vw, 3.5rem);
   border-bottom: 1px solid var(--line);
   background: var(--paper);
 }
@@ -184,9 +184,9 @@ summary:focus-visible {
 
 .news-section {
   width: 100%;
-  padding: clamp(4rem, 7vw, 6rem) var(--page-gutter);
+  padding: clamp(2rem, 3.5vw, 3rem) var(--page-gutter) clamp(4rem, 7vw, 6rem);
   border-bottom: 1px solid var(--line);
-  background: var(--paper-light);
+  background: var(--paper);
 }
 
 .news-section-inner {
@@ -452,7 +452,7 @@ footer a { justify-self: end; }
   .about-hero {
     width: 100%;
     min-height: auto;
-    padding: 4.5rem var(--page-gutter) 5rem;
+    padding: 4.5rem var(--page-gutter) 2.5rem;
   }
   .about-hero-inner {
     gap: 3rem;
@@ -460,7 +460,7 @@ footer a { justify-self: end; }
   }
   .about-copy h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
   .about-portrait { width: min(100%, 340px); justify-self: center; }
-  .news-section { padding: 4rem var(--page-gutter); }
+  .news-section { padding: 2rem var(--page-gutter) 4rem; }
   .content-page { min-height: auto; padding: 4.5rem var(--page-gutter) 5rem; }
   .content-page h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
   footer { align-items: start; grid-template-columns: 1fr; }

@@ -175,10 +175,12 @@ test("keeps all page content in editable Markdown files", async () => {
   assert.match(css, /\.site-header\s*{[^}]*padding:\s*0 var\(--page-gutter\);/s);
   assert.match(css, /\.desktop-nav a\s*{[^}]*font-size:\s*var\(--header-font-size\);/s);
   assert.match(css, /\.about-hero\s*{[^}]*width:\s*100%;[^}]*padding:[^;]*var\(--page-gutter\)/s);
+  assert.match(css, /\.about-hero\s*{[^}]*border-bottom:\s*1px solid var\(--line\);[^}]*background:\s*var\(--paper\);/s);
   assert.match(css, /\.about-hero-inner\s*{[^}]*max-width:\s*var\(--content-max-width\);[^}]*align-items:\s*center;[^}]*gap:\s*clamp\(2rem,\s*4vw,\s*4rem\);[^}]*margin-inline:\s*auto;/s);
   assert.match(css, /\.about-copy h1\s*{[^}]*font-size:\s*clamp\(2\.75rem,\s*5vw,\s*5rem\);/s);
   assert.match(css, /\.about-introduction\s*{[^}]*max-width:\s*none;/s);
   assert.match(css, /\.news-section-inner\s*{[^}]*max-width:\s*var\(--content-max-width\);[^}]*margin-inline:\s*auto;/s);
+  assert.match(css, /\.news-section\s*{[^}]*background:\s*var\(--paper\);/s);
   assert.match(css, /\.news-list \.markdown-body li\s*{[^}]*border-top:\s*1px solid var\(--line\);/s);
   assert.match(css, /\.content-page\s*{[^}]*padding:[^;]*var\(--page-gutter\)[^}]*background:\s*var\(--paper\);/s);
   assert.match(css, /\.content-page-copy\s*{[^}]*width:\s*100%;[^}]*max-width:\s*var\(--content-max-width\);[^}]*margin-inline:\s*auto;/s);
