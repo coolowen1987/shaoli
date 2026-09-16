@@ -93,7 +93,7 @@ test("static export renders the Markdown-driven academic pages", async () => {
   assert.match(chineseHome, /class="about-hero-inner"/i);
   assert.match(chineseHome, /<h1[^>]*>欢迎！<\/h1>/i);
   assert.ok(chineseHome.includes(expectedChineseAboutHtml));
-  assert.match(chineseHome, /<h2 id="news-title">新闻动态<\/h2>/i);
+  assert.match(chineseHome, /<h2 id="news-title">新闻<\/h2>/i);
   assert.ok(chineseHome.includes(expectedChineseNewsHtml));
   assert.ok(chineseHome.indexOf('class="about-portrait"') < chineseHome.indexOf('class="news-section"'));
   assert.match(chineseHome, /href="\/"[^>]*>English<\/a>/i);
